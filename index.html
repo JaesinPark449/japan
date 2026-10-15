@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JLPT 단어장</title>
+  <style>
+    body { font-family: sans-serif; background: #0f172a; color: #f8fafc; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .card { background: #1e293b; border: 1px solid #334155; padding: 40px; border-radius: 16px; text-align: center; width: 320px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    h1 { font-size: 3.5rem; margin: 20px 0; color: #38bdf8; cursor: pointer; }
+    p { color: #94a3b8; font-size: 1.2rem; }
+    button { background: #38bdf8; color: #0f172a; border: none; padding: 10px 20px; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 15px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <small id="badge">N1 · 한자읽기</small>
+    <h1 id="kanji" onclick="nextCard()">根拠</h1>
+    <p id="meaning" style="display:none;">こんきょ<br><b>근거</b></p>
+    <button onclick="reveal()">정답 보기 / 다음</button>
+  </div>
+  <script>
+    let idx = 0, show = false;
+    function reveal() {
+      show = !show;
+      document.getElementById("meaning").style.display = show ? "block" : "none";
+      if(!show) { idx = (idx + 1) % WORD_DB.length; let w = WORD_DB[idx]; document.getElementById("kanji").innerText = w.kanji; document.getElementById("badge").innerText = w.level + " · " + w.category; document.getElementById("meaning").innerHTML = w.reading + "<br><b>" + w.meaning + "</b>"; }
+    }
+  </script>
+</body>
+</html>
